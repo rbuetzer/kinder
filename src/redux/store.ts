@@ -6,16 +6,20 @@ import {
   Reducer
 } from "redux";
 import createSagaMiddleware from "redux-saga";
-import { IName } from "../models/IName";
+import { INameCandidate } from "../models/INameCandidate";
 import { TActionType } from "./types";
 
 const initialState = {
-  names: {} as { [id: number]: IName }
+  names: [] as INameCandidate[]
 };
 
 export type TState = typeof initialState;
 
 export const actions = {
+  importNames: (names: string[]) => ({
+    type: "importNames" as const,
+    names
+  }),
   upvote: (id: number) => ({
     type: "upvote" as const,
     id
@@ -33,18 +37,24 @@ export const reducer: Reducer<TState, TAction> = (
   action
 ) => {
   switch (action.type) {
+    case "importNames":
+      return {
+        ...state,
+        names: action.names.map(name => ({
+          value: name,
+          upvotes: 0,
+          downvotes: 0
+        }))
+      };
     case "upvote": {
       const { names } = state;
       const name = names[action.id];
       return {
         ...state,
-        names: {
-          ...names,
-          [action.id]: {
-            ...name,
-            upvotes: name.upvotes + 1
-          }
-        }
+        names: names.map((name, id) => ({
+          ...name,
+          upvotes: id === action.id ? name.upvotes + 1 : name.upvotes
+        }))
       };
     }
     case "downvote": {
@@ -52,13 +62,10 @@ export const reducer: Reducer<TState, TAction> = (
       const name = names[action.id];
       return {
         ...state,
-        names: {
-          ...names,
-          [action.id]: {
-            ...name,
-            downvotes: name.downvotes + 1
-          }
-        }
+        names: names.map((name, id) => ({
+          ...name,
+          downvotes: id === action.id ? name.downvotes + 1 : name.downvotes
+        }))
       };
     }
   }
