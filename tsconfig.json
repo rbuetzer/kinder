@@ -1,0 +1,9 @@
+{
+  "baseUrl": "./src",
+  "compilerOptions": {
+    "target": "es5",
+    "jsx": "react",
+    "esModuleInterop": true
+  },
+  "include": ["src/**/*"]
+}

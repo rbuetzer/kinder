@@ -1,0 +1,22 @@
+{
+  "name": "namefinder",
+  "version": "1.0.0",
+  "main": "./src/index.html",
+  "author": "Richard Bützer <richard@fam-buetzer.ch>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "parcel src/index.html"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.4",
+    "@types/react-dom": "^16.9.1",
+    "parcel-bundler": "^1.12.3",
+    "prettier": "^1.18.2",
+    "typescript": "^3.6.3"
+  },
+  "dependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.10.1"
+  }
+}
