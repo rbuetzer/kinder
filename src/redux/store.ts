@@ -15,29 +15,29 @@ const initialState = {
 
 export type TState = typeof initialState;
 
-export const actions = {
+export const nameListActions = {
   importNames: (names: string[]) => ({
-    type: "importNames" as const,
+    type: "nameList/importNames" as const,
     names
   }),
   upvote: (id: number) => ({
-    type: "upvote" as const,
+    type: "nameList/upvote" as const,
     id
   }),
   downvote: (id: number) => ({
-    type: "downvote" as const,
+    type: "nameList/downvote" as const,
     id
   })
 };
 
-export type TAction = TActionType<typeof actions>;
+export type TAction = TActionType<typeof nameListActions>;
 
 export const reducer: Reducer<TState, TAction> = (
   state = initialState,
   action
 ) => {
   switch (action.type) {
-    case "importNames":
+    case "nameList/importNames":
       return {
         ...state,
         names: action.names.map(name => ({
@@ -46,7 +46,7 @@ export const reducer: Reducer<TState, TAction> = (
           downvotes: 0
         }))
       };
-    case "upvote": {
+    case "nameList/upvote": {
       const { names } = state;
       const name = names[action.id];
       return {
@@ -57,7 +57,7 @@ export const reducer: Reducer<TState, TAction> = (
         }))
       };
     }
-    case "downvote": {
+    case "nameList/downvote": {
       const { names } = state;
       const name = names[action.id];
       return {

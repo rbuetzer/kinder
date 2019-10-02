@@ -1,10 +1,10 @@
-import { actions, reducer, TState } from "../../src/redux/store";
+import { nameListActions, reducer, TState } from "../../src/redux/store";
 
 describe("importNames", () => {
   it("imports the names", () => {
     const initialState: TState = { names: [] };
 
-    const action = actions.importNames(["Tick", "Trick", "Track"]);
+    const action = nameListActions.importNames(["Tick", "Trick", "Track"]);
 
     const result = [action].reduce(reducer, initialState);
 
@@ -47,7 +47,7 @@ describe("upvote", () => {
       ]
     };
 
-    const action = actions.upvote(0);
+    const action = nameListActions.upvote(0);
 
     const result = [action].reduce(reducer, initialState);
 
@@ -85,7 +85,7 @@ describe("downvote", () => {
       ]
     };
 
-    const action = actions.downvote(0);
+    const action = nameListActions.downvote(0);
 
     const result = [action].reduce(reducer, initialState);
 
