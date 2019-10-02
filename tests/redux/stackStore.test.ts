@@ -6,8 +6,10 @@ import {
 import {
   stackStoreActions,
   stackReducer,
-  TStackState
+  TStackState,
+  getNameIdsInStack
 } from "../../src/redux/stackStore";
+import { IStoreState } from "../../src/redux/store";
 
 describe("stackStore", () => {
   describe("init", () => {
@@ -64,6 +66,21 @@ describe("stackStore", () => {
         remainingNameIds: [1, 2, 3, 4],
         allNameIds: [1, 2, 3, 4]
       });
+    });
+  });
+
+  describe("selectors", () => {
+    describe("getNameIdsInStack", () => {
+      let remainingNameIds = [1, 2, 3, 5, 8, 13];
+      const state = {
+        stack: {
+          remainingNameIds
+        }
+      } as IStoreState;
+
+      const result = getNameIdsInStack(state);
+
+      expect(result).toEqual(remainingNameIds);
     });
   });
 });

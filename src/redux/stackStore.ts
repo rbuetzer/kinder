@@ -8,6 +8,7 @@ import {
 import createSagaMiddleware from "redux-saga";
 import { INameCandidate } from "../models/INameCandidate";
 import { TActionType } from "./types";
+import { IStoreState } from "./store";
 
 const initialState = {
   currentNameId: undefined as number | undefined,
@@ -56,3 +57,6 @@ export const stackReducer: Reducer<TStackState, TAction> = (
   }
   return state;
 };
+
+export const getNameIdsInStack = (state: IStoreState) =>
+  state.stack.remainingNameIds;
