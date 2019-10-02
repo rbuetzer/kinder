@@ -7,9 +7,11 @@ import {
   stackStoreActions,
   stackReducer,
   TStackState,
-  getNameIdsInStack
+  getNameIdsInStack,
+  getCurrentName
 } from "../../src/redux/stackStore";
 import { IStoreState } from "../../src/redux/store";
+import { INameCandidate } from "../../src/models/INameCandidate";
 
 describe("stackStore", () => {
   describe("init", () => {
@@ -81,6 +83,31 @@ describe("stackStore", () => {
       const result = getNameIdsInStack(state);
 
       expect(result).toEqual(remainingNameIds);
+    });
+
+    describe("getCurrentName", () => {
+      const createNameMock = (name: string): INameCandidate =>
+        ({ value: name } as INameCandidate);
+      it("returns the current name", () => {
+        const state = {
+          stack: {
+            currentNameId: 1
+          },
+          names: [
+            "Jonas",
+            "Ulrich",
+            "Henri",
+            "Josef",
+            "Stefano",
+            "Friedrich",
+            "Wilhelm"
+          ].map(createNameMock)
+        } as IStoreState;
+
+        const result = getCurrentName(state);
+
+        expect(result.value).toEqual("Ulrich");
+      });
     });
   });
 });

@@ -8,6 +8,7 @@ import {
 import createSagaMiddleware from "redux-saga";
 import { INameCandidate } from "../models/INameCandidate";
 import { TActionType } from "./types";
+import { IStoreState } from "./store";
 
 const initialState = [] as INameCandidate[];
 
@@ -58,3 +59,5 @@ export const nameListReducer: Reducer<TNameListState, TAction> = (
   }
   return state;
 };
+
+export const isLoaded = (state: IStoreState) => state.names.length > 0;

@@ -1,8 +1,11 @@
 import {
+  isLoaded,
   nameListActions,
   nameListReducer,
   TNameListState
 } from "../../src/redux/nameListStore";
+import { INameCandidate } from "../../src/models/INameCandidate";
+import { IStoreState } from "../../src/redux/store";
 
 describe("importNames", () => {
   it("imports the names", () => {
@@ -97,5 +100,28 @@ describe("downvote", () => {
         downvotes: 1
       }
     ]);
+  });
+});
+
+describe("selectors", () => {
+  describe("isLoaded", () => {
+    it("is true, if there are names", () => {
+      const state = {
+        names: [{ value: "Adam" }]
+      } as IStoreState;
+
+      const result = isLoaded(state);
+
+      expect(result).toBe(true);
+    });
+    it("is false, if there are no names", () => {
+      const state = {
+        names: []
+      } as IStoreState;
+
+      const result = isLoaded(state);
+
+      expect(result).toBe(false);
+    });
   });
 });

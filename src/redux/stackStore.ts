@@ -60,3 +60,6 @@ export const stackReducer: Reducer<TStackState, TAction> = (
 
 export const getNameIdsInStack = (state: IStoreState) =>
   state.stack.remainingNameIds;
+
+export const getCurrentName = (state: IStoreState): INameCandidate =>
+  state.names[state.stack.currentNameId];
