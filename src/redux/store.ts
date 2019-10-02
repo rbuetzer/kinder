@@ -2,6 +2,8 @@ import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { nameListReducer, TNameListState } from "./nameListStore";
 import { stackReducer, TStackState } from "./stackStore";
+import { sagas } from "./sagas";
+
 export interface IStoreState {
   names: TNameListState;
   stack: TStackState;
@@ -22,3 +24,5 @@ const composeEnhancers =
 const enhancer = composeEnhancers(applyMiddleware(sagaMiddleware));
 
 export const store = createStore(reducer, enhancer);
+
+sagaMiddleware.run(sagas);
