@@ -1,13 +1,11 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { nameListReducer, TNameListState } from "./nameListStore";
-
-export type TState = {
-  names: TNameListState;
-};
+import { stackReducer, TStackState } from "./stackStore";
 
 const reducer = combineReducers({
-  names: nameListReducer
+  names: nameListReducer,
+  stack: stackReducer
 });
 
 const sagaMiddleware = createSagaMiddleware();

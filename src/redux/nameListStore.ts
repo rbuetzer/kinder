@@ -28,9 +28,9 @@ export const nameListActions = {
   })
 };
 
-type TNameListAction = TActionType<typeof nameListActions>;
+type TAction = TActionType<typeof nameListActions>;
 
-export const nameListReducer: Reducer<TNameListState, TNameListAction> = (
+export const nameListReducer: Reducer<TNameListState, TAction> = (
   state = initialState,
   action
 ) => {
