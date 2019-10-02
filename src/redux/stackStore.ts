@@ -11,12 +11,17 @@ import { TActionType } from "./types";
 
 const initialState = {
   currentNameId: undefined as number | undefined,
-  remainingNameIds: [] as number[]
+  remainingNameIds: [] as number[],
+  allNameIds: [] as number[]
 };
 
 export type TStackState = typeof initialState;
 
 export const stackStoreActions = {
+  init: (nameIds: number[]) => ({
+    type: "stack/init" as const,
+    nameIds
+  }),
   pickCard: (id: number) => ({
     type: "stack/pickCard" as const,
     id
@@ -30,6 +35,14 @@ export const stackReducer: Reducer<TStackState, TAction> = (
   action
 ) => {
   switch (action.type) {
+    case "stack/init": {
+      return {
+        ...state,
+        currentNameId: undefined,
+        remainingNameIds: action.nameIds,
+        allNameIds: action.nameIds
+      };
+    }
     case "stack/pickCard": {
       return {
         ...state,
