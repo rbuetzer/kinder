@@ -35,19 +35,22 @@ export const stackReducer: Reducer<TStackState, TAction> = (
   action
 ) => {
   switch (action.type) {
-    case "stack/init": {
+    case "stack/init":
       return {
         ...state,
         currentNameId: undefined,
         remainingNameIds: action.nameIds,
         allNameIds: action.nameIds
       };
-    }
     case "stack/pickCard": {
+      const remainingIds = state.remainingNameIds.filter(
+        id => id !== action.id
+      );
       return {
         ...state,
         currentNameId: action.id,
-        remainingNameIds: state.remainingNameIds.filter(id => id !== action.id)
+        remainingNameIds:
+          remainingIds.length > 0 ? remainingIds : state.allNameIds
       };
     }
   }

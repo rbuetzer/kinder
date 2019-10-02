@@ -48,5 +48,22 @@ describe("stackStore", () => {
         allNameIds: [1, 2, 3, 4, 5, 6, 7, 8]
       });
     });
+    it("refills the stack, if the last card is picked", () => {
+      const initialState: TStackState = {
+        currentNameId: 3,
+        remainingNameIds: [3],
+        allNameIds: [1, 2, 3, 4]
+      };
+
+      const action = stackStoreActions.pickCard(3);
+
+      const result = [action].reduce(stackReducer, initialState);
+
+      expect(result).toEqual({
+        currentNameId: 3,
+        remainingNameIds: [1, 2, 3, 4],
+        allNameIds: [1, 2, 3, 4]
+      });
+    });
   });
 });
