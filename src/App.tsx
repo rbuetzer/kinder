@@ -6,6 +6,7 @@ import names from "./data/few-names.json";
 import { sagaActions } from "./redux/sagas";
 import { isLoaded } from "./redux/nameListStore";
 import { Voting } from "./voting/Voting";
+import { Menu } from "./menu/Menu";
 
 export const App: React.FunctionComponent = () => {
   const dispatch = useDispatch();
@@ -22,5 +23,14 @@ export const App: React.FunctionComponent = () => {
     return <>loading...</>;
   }
 
-  return <Voting />;
+  return (
+    <div className={"flex flex-col h-full"}>
+      <div className={"flex-grow"}>
+        <Voting />
+      </div>
+      <div className={"h-48 w-full bg-gray-200"}>
+        <Menu />
+      </div>
+    </div>
+  );
 };
