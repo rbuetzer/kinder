@@ -5,13 +5,16 @@ import { stackReducer, TStackState } from "./stackStore";
 import { sagas } from "./sagas";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { appReducer, TAppState } from "./appStore";
 
 export interface IStoreState {
+  app: TAppState;
   names: TNameListState;
   stack: TStackState;
 }
 
 const reducer = combineReducers({
+  app: appReducer,
   names: nameListReducer,
   stack: stackReducer
 });

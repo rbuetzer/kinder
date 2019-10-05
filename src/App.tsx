@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import names from "./data/names.json";
@@ -7,11 +7,15 @@ import { sagaActions } from "./redux/sagas";
 import { isLoaded } from "./redux/nameListStore";
 import { Voting } from "./voting/Voting";
 import { Menu } from "./menu/Menu";
+import { Results } from "./results/Results";
+import { SubPage } from "./models/SubPage";
+import { getSubPage } from "./redux/appStore";
 
 export const App: React.FunctionComponent = () => {
   const dispatch = useDispatch();
 
-  let ready = useSelector(isLoaded);
+  const ready = useSelector(isLoaded);
+  const subPage = useSelector(getSubPage);
 
   const importNames = () => {
     if (!ready) {
@@ -25,12 +29,19 @@ export const App: React.FunctionComponent = () => {
     return <>loading...</>;
   }
 
+  const renderSubPage = () => {
+    switch (subPage) {
+      case SubPage.Voting:
+        return <Voting />;
+      case SubPage.Results:
+        return <Results />;
+    }
+  };
+
   return (
     <div className={"flex flex-col h-full"}>
-      <div className={"flex-grow"}>
-        <Voting />
-      </div>
-      <div className={"h-48 w-full bg-gray-200"}>
+      <div className={"flex-grow"}>{renderSubPage()}</div>
+      <div className={"h-32 w-full bg-gray-100"}>
         <Menu />
       </div>
     </div>
