@@ -3,6 +3,8 @@ import createSagaMiddleware from "redux-saga";
 import { nameListReducer, TNameListState } from "./nameListStore";
 import { stackReducer, TStackState } from "./stackStore";
 import { sagas } from "./sagas";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 export interface IStoreState {
   names: TNameListState;
@@ -21,8 +23,16 @@ const composeEnhancers =
     ? window["__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"]({})
     : compose;
 
+const persistConfig = {
+  key: "root",
+  storage
+};
+
+const persistedReducer = persistReducer(persistConfig, reducer);
+
 const enhancer = composeEnhancers(applyMiddleware(sagaMiddleware));
 
-export const store = createStore(reducer, enhancer);
+export const store = createStore(persistedReducer, enhancer);
 
+export const persistor = persistStore(store);
 sagaMiddleware.run(sagas);
