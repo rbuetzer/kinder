@@ -1,0 +1,52 @@
+.cardWrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+/* The animation code */
+@keyframes animation-card {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.card {
+  margin: 20px;
+  position: absolute;
+  text-align: center;
+  left: 0;
+  top: 0;
+  height: calc(100% - 40px);
+  width: calc(100% - 40px);
+  animation-name: animation-card;
+  animation-duration: 0.5s;
+  opacity: 1;
+  cursor: grab;
+  user-select: none;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+/* The animation code */
+@keyframes animation-title {
+  from {
+    font-size: 3em;
+  }
+  to {
+    font-size: 4em;
+  }
+}
+
+.title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-name: animation-title;
+  animation-duration: 0.5s;
+  font-size: 4em;
+  font-weight: bold;
+}
