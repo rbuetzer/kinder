@@ -33,10 +33,10 @@
 /* The animation code */
 @keyframes animation-title {
   from {
-    font-size: 3em;
+    @apply text-4xl;
   }
   to {
-    font-size: 4em;
+    @apply text-5xl;
   }
 }
 
@@ -47,6 +47,5 @@
   transform: translate(-50%, -50%);
   animation-name: animation-title;
   animation-duration: 0.5s;
-  font-size: 4em;
   font-weight: bold;
 }

@@ -40,8 +40,10 @@ export const App: React.FunctionComponent = () => {
 
   return (
     <div className={"flex flex-col h-full"}>
-      <div className={"flex-grow"}>{renderSubPage()}</div>
-      <div className={"h-32 w-full bg-gray-100"}>
+      <div className={"flex-grow overflow-y-scroll overflow-x-hidden"}>
+        {renderSubPage()}
+      </div>
+      <div className={"flex-shrink-0 h-24 w-full bg-gray-100"}>
         <Menu />
       </div>
     </div>

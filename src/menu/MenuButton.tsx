@@ -19,13 +19,15 @@ export const MenuButton: React.FunctionComponent<IProps> = props => {
 
   return (
     <div
-      className={"self-center text-center cursor-pointer text-gray-700"}
+      className={"self-center text-center cursor-pointer"}
       onClick={handleClick}
     >
-      <div className={"w-full"}>
+      <div className={"w-full text-gray-700 mb-1"}>
         <i className={`fas fa-${props.icon} text-4xl`} />
       </div>
-      <div className={"w-full text-lg"}>{props.caption}</div>
+      <div className={"w-full text-lg font-bold text-gray-700"}>
+        {props.caption}
+      </div>
     </div>
   );
 };

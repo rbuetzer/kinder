@@ -13,7 +13,7 @@ interface IProps {
 /**
  * Distance in pixel the card has to be swiped
  */
-const MINIMUM_SWIPE_DISTANCE = 100;
+const MINIMUM_SWIPE_DISTANCE = 80;
 
 export const NameCard: React.FunctionComponent<IProps> = props => {
   const touchPosition = useRef(0);
@@ -91,15 +91,23 @@ export const NameCard: React.FunctionComponent<IProps> = props => {
     }
   }, [isDragging]);
 
+  const getBackgroundColor = () => {
+    const offset = position / 5;
+    const r = 255 - Math.min(255, offset);
+    const g = 255 - Math.min(255, -offset);
+    const b = Math.min(r, g);
+    return "rgb(" + r + "," + g + "," + b + ")";
+  };
+
   return (
     <div className={styles.cardWrapper}>
       <div
         className={styles.card}
         onMouseDown={startDragging}
         onTouchStart={startDraggingTouch as any}
-        style={{ left: position }}
+        style={{ left: position, backgroundColor: getBackgroundColor() }}
       >
-        <div className={styles.title}>{props.name}</div>
+        <div className={`${styles.title} text-5xl`}>{props.name}</div>
       </div>
     </div>
   );
