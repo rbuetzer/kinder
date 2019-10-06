@@ -61,3 +61,19 @@ export const nameListReducer: Reducer<TNameListState, TAction> = (
 };
 
 export const isLoaded = (state: IStoreState) => state.names.length > 0;
+
+interface IRankedName {
+  name: string;
+  score: number;
+}
+
+export const getRankedNames = (state: IStoreState): IRankedName[] => {
+  const names = state.names
+    .filter(name => name.upvotes + name.downvotes > 0)
+    .map(name => ({
+      name: name.value,
+      score: name.upvotes / (name.upvotes + name.downvotes)
+    }));
+  names.sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
+  return names;
+};

@@ -1,4 +1,5 @@
 import {
+  getRankedNames,
   isLoaded,
   nameListActions,
   nameListReducer,
@@ -122,6 +123,79 @@ describe("selectors", () => {
       const result = isLoaded(state);
 
       expect(result).toBe(false);
+    });
+  });
+
+  describe("getRankedNames", () => {
+    it("orders by score and name, removes names without votes", () => {
+      const state = {
+        names: [
+          {
+            value: "Jonas",
+            upvotes: 0,
+            downvotes: 0
+          },
+          {
+            value: "Ulrich",
+            upvotes: 3,
+            downvotes: 0
+          },
+          {
+            value: "Henri",
+            upvotes: 7,
+            downvotes: 3
+          },
+          {
+            value: "Josef",
+            upvotes: 2,
+            downvotes: 3
+          },
+          {
+            value: "Stefano",
+            upvotes: 0,
+            downvotes: 2
+          },
+          {
+            value: "Friedrich",
+            upvotes: 4,
+            downvotes: 6
+          },
+          {
+            value: "Wilhelm",
+            upvotes: 3,
+            downvotes: 3
+          }
+        ]
+      } as IStoreState;
+
+      const result = getRankedNames(state);
+
+      expect(result).toEqual([
+        {
+          name: "Ulrich",
+          score: 1
+        },
+        {
+          name: "Henri",
+          score: 0.7
+        },
+        {
+          name: "Wilhelm",
+          score: 0.5
+        },
+        {
+          name: "Friedrich",
+          score: 0.4
+        },
+        {
+          name: "Josef",
+          score: 0.4
+        },
+        {
+          name: "Stefano",
+          score: 0
+        }
+      ]);
     });
   });
 });
