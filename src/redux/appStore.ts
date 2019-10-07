@@ -9,7 +9,7 @@ export type TAppState = typeof initialState;
 
 export const appAction = {
   selectSubPage: (subPage: SubPage) => ({
-    type: "subPage/selectSubPage" as const,
+    type: "app/selectSubPage" as const,
     subPage
   })
 };
@@ -21,7 +21,7 @@ export const appReducer: Reducer<TAppState, TAction> = (
   action
 ) => {
   switch (action.type) {
-    case "subPage/selectSubPage":
+    case "app/selectSubPage":
       return {
         ...state,
         subPage: action.subPage
