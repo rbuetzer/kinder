@@ -7,6 +7,11 @@ export const Results: React.FunctionComponent = () => {
 
   return (
     <div className={"px-5 py-2"}>
+      {entries.length === 0 && (
+        <div className={"font-bold w-full text-xl py-3 "}>
+          Es wurden noch keine Namen bewertet
+        </div>
+      )}
       {entries.map(({ name, score }, i) => (
         <div
           key={name}

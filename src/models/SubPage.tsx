@@ -1,4 +1,5 @@
 export enum SubPage {
   Voting,
-  Results
+  Results,
+  NameList
 }

@@ -15,6 +15,11 @@ export const Menu: React.FunctionComponent = () => {
         icon={"trophy"}
         subPage={SubPage.Results}
       />
+      <MenuButton
+        caption={"Namen"}
+        icon={"file-alt"}
+        subPage={SubPage.NameList}
+      />
     </div>
   );
 };

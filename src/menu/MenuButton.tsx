@@ -13,7 +13,6 @@ export const MenuButton: React.FunctionComponent<IProps> = props => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    console.log(props.subPage);
     return dispatch(appAction.selectSubPage(props.subPage));
   };
 

@@ -1,33 +1,16 @@
 import * as React from "react";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-import names from "./data/names.json";
-import { sagaActions } from "./redux/sagas";
+import { useSelector } from "react-redux";
 import { isLoaded } from "./redux/nameListStore";
 import { Voting } from "./voting/Voting";
 import { Menu } from "./menu/Menu";
 import { Results } from "./results/Results";
 import { SubPage } from "./models/SubPage";
 import { getSubPage } from "./redux/appStore";
+import { NameList } from "./nameList/NameList";
 
 export const App: React.FunctionComponent = () => {
-  const dispatch = useDispatch();
-
   const ready = useSelector(isLoaded);
   const subPage = useSelector(getSubPage);
-
-  const importNames = () => {
-    if (!ready) {
-      dispatch(sagaActions.importNames(names));
-    }
-  };
-
-  useEffect(importNames, []);
-
-  if (!ready) {
-    return <>loading...</>;
-  }
 
   const renderSubPage = () => {
     switch (subPage) {
@@ -35,6 +18,8 @@ export const App: React.FunctionComponent = () => {
         return <Voting />;
       case SubPage.Results:
         return <Results />;
+      case SubPage.NameList:
+        return <NameList />;
     }
   };
 
