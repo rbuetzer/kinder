@@ -1,16 +1,23 @@
-import { put, takeEvery, select, call } from "redux-saga/effects";
+import { call, put, select, takeEvery } from "redux-saga/effects";
 import { TActionType } from "./types";
 import { nameListActions } from "./nameListStore";
 import { getNameIdsInStack, stackStoreActions } from "./stackStore";
 import { pickRandomElement } from "../utils/array";
 import { Action } from "redux";
+import { appAction } from "./appStore";
+import { SubPage } from "../models/SubPage";
 
+const ACTION_IMPORT_FILE = "importFile";
 const ACTION_IMPORT_NAMES = "importNames";
 const ACTION_UPVOTE = "upvote";
 const ACTION_DOWNVOTE = "downvote";
 const ACTION_NEXT_CARD = "nextCard";
 
 export const sagaActions = {
+  importFile: (fileContent: string) => ({
+    type: ACTION_IMPORT_FILE,
+    fileContent
+  }),
   importNames: (names: string[]) => ({
     type: ACTION_IMPORT_NAMES,
     names
@@ -27,6 +34,17 @@ export const sagaActions = {
 };
 
 type TAction = TActionType<typeof sagaActions>;
+
+export function* importFileSaga(
+  action: ReturnType<typeof sagaActions.importFile>
+) {
+  const array = action.fileContent
+    .split("\n")
+    .map(string => string.replace(/^\s+|\s+$/g, ""))
+    .filter(string => string.length > 0);
+  yield put(sagaActions.importNames(array));
+  yield put(appAction.selectSubPage(SubPage.Voting));
+}
 
 export function* importNamesSaga(
   action: ReturnType<typeof sagaActions.importNames>
@@ -57,6 +75,7 @@ function* downvoteSaga() {
 }
 
 export function* sagas() {
+  yield takeEvery(ACTION_IMPORT_FILE, importFileSaga);
   yield takeEvery(ACTION_IMPORT_NAMES, importNamesSaga);
   yield takeEvery(ACTION_NEXT_CARD, nextCardSaga);
   yield takeEvery(ACTION_UPVOTE, upvoteSaga);
