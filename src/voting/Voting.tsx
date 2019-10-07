@@ -26,6 +26,10 @@ export const Voting: React.FunctionComponent = () => {
 
   const currentName: INameCandidate = useSelector(getCurrentName);
 
+  if (!currentName) {
+    return <>Loading ...</>;
+  }
+
   return (
     <NameCard
       key={key}
