@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { isLoaded } from "./redux/nameListStore";
 import { Voting } from "./voting/Voting";
 import { Menu } from "./menu/Menu";
 import { Results } from "./results/Results";
@@ -9,7 +8,6 @@ import { getSubPage } from "./redux/appStore";
 import { NameList } from "./nameList/NameList";
 
 export const App: React.FunctionComponent = () => {
-  const ready = useSelector(isLoaded);
   const subPage = useSelector(getSubPage);
 
   const renderSubPage = () => {

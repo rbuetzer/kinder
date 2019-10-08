@@ -33,8 +33,8 @@ export const stackReducer: Reducer<TStackState, TAction> = (
       return {
         ...state,
         currentNameId: undefined,
-        remainingNameIds: action.nameIds,
-        allNameIds: action.nameIds
+        remainingNameIds: [...action.nameIds],
+        allNameIds: [...action.nameIds]
       };
     case "stack/pickCard": {
       const remainingIds = state.remainingNameIds.filter(
@@ -44,7 +44,7 @@ export const stackReducer: Reducer<TStackState, TAction> = (
         ...state,
         currentNameId: action.id,
         remainingNameIds:
-          remainingIds.length > 0 ? remainingIds : state.allNameIds
+          remainingIds.length > 0 ? remainingIds : [...state.allNameIds]
       };
     }
   }
