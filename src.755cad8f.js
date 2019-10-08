@@ -180,4 +180,4 @@ module.exports=function(n){return new Promise(function(e,o){var r=document.creat
 },{}],0:[function(require,module,exports) {
 var b=require("21/1");b.register("js",require("Yi9z"));
 },{}]},{},[0,"zo2T"], null)
-//# sourceMappingURL=/kinder/src.755cad8f.js.map
+//# sourceMappingURL=/src.755cad8f.js.map
