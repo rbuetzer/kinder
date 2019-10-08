@@ -6,6 +6,7 @@ export const NameList: React.FunctionComponent = () => {
   return (
     <>
       <FileDialog />
+      <Presets />
     </>
   );
 };

@@ -1,11 +1,4 @@
-import {
-  applyMiddleware,
-  combineReducers,
-  compose,
-  createStore,
-  Reducer
-} from "redux";
-import createSagaMiddleware from "redux-saga";
+import { Reducer } from "redux";
 import { INameCandidate } from "../models/INameCandidate";
 import { TActionType } from "./types";
 import { IStoreState } from "./store";
