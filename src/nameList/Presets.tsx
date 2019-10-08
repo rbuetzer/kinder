@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { nameListActions } from "../redux/nameListStore";
+import { sagaActions } from "../redux/sagas";
 import { appAction } from "../redux/appStore";
 import { SubPage } from "../models/SubPage";
 
@@ -27,7 +27,7 @@ export const Presets: React.FunctionComponent = () => {
 
   const loadList = async (file: Promise<NameListData>) => {
     const { names } = await file;
-    dispatch(nameListActions.importNames(names));
+    dispatch(sagaActions.importNames(names));
     dispatch(appAction.selectSubPage(SubPage.Voting));
   };
 
