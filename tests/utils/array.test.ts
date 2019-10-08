@@ -28,7 +28,7 @@ describe("array utils", () => {
 
       const result = pickRandomElement(randomNumberGenerator)(array);
 
-      expect(result).toEqual(10);
+      expect(result).toEqual(13);
     });
 
     it("returns undefined, if the array is empty", () => {
