@@ -3,7 +3,7 @@ import { TActionType } from "./types";
 import { IStoreState } from "./store";
 import { SubPage } from "../models/SubPage";
 
-const initialState = { subPage: SubPage.Voting };
+const initialState = { subPage: SubPage.NameList };
 
 export type TAppState = typeof initialState;
 
