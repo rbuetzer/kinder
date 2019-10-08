@@ -5,8 +5,13 @@
   "author": "Richard Bützer <richard@fam-buetzer.ch>",
   "license": "MIT",
   "private": true,
+  "homepage": "https://rbuetzer.github.io/kinder/",
   "scripts": {
-    "dev": "parcel src/index.html"
+    "dev": "parcel src/index.html",
+    "test": "tsc --noEmit && jest",
+    "build": "parcel build src/index.html",
+    "predeploy": "yarn test && yarn build --public-url /kinder",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2",
@@ -15,6 +20,7 @@
     "@types/react": "^16.9.4",
     "@types/react-dom": "^16.9.1",
     "@types/react-redux": "^7.1.4",
+    "gh-pages": "^2.1.1",
     "jest": "^24.9.0",
     "less": "^3.10.3",
     "parcel-bundler": "^1.12.3",
