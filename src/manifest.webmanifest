@@ -3,7 +3,7 @@
   "name": "Kinder",
   "start_url": "./index.html",
   "display": "standalone",
-  "theme_color": "#ffcc00",
+  "theme_color": "#ffffff",
   "background_color": "#ffffff",
   "icons": [
     {
