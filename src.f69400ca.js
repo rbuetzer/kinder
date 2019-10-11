@@ -41451,7 +41451,205 @@ exports.store = store;
 var persistor = (0, _reduxPersist.persistStore)(store);
 exports.persistor = persistor;
 sagaMiddleware.run(_sagas.sagas);
-},{"redux":"../node_modules/redux/es/redux.js","redux-saga":"../node_modules/redux-saga/dist/redux-saga-core-npm-proxy.esm.js","./nameListStore":"redux/nameListStore.ts","./stackStore":"redux/stackStore.ts","./sagas":"redux/sagas.ts","redux-persist":"../node_modules/redux-persist/es/index.js","redux-persist/lib/storage":"../node_modules/redux-persist/lib/storage/index.js","./appStore":"redux/appStore.ts"}],"index.less":[function(require,module,exports) {
+},{"redux":"../node_modules/redux/es/redux.js","redux-saga":"../node_modules/redux-saga/dist/redux-saga-core-npm-proxy.esm.js","./nameListStore":"redux/nameListStore.ts","./stackStore":"redux/stackStore.ts","./sagas":"redux/sagas.ts","redux-persist":"../node_modules/redux-persist/es/index.js","redux-persist/lib/storage":"../node_modules/redux-persist/lib/storage/index.js","./appStore":"redux/appStore.ts"}],"../node_modules/redux-persist/es/integration/react.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.PersistGate = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _typeof(obj) {
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function _typeof(obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return _assertThisInitialized(self);
+}
+
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) _setPrototypeOf(subClass, superClass);
+}
+
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+// eslint-disable-line import/no-unresolved
+var PersistGate =
+/*#__PURE__*/
+function (_PureComponent) {
+  _inherits(PersistGate, _PureComponent);
+
+  function PersistGate() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    _classCallCheck(this, PersistGate);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(PersistGate)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_this), "state", {
+      bootstrapped: false
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "_unsubscribe", void 0);
+
+    _defineProperty(_assertThisInitialized(_this), "handlePersistorState", function () {
+      var persistor = _this.props.persistor;
+
+      var _persistor$getState = persistor.getState(),
+          bootstrapped = _persistor$getState.bootstrapped;
+
+      if (bootstrapped) {
+        if (_this.props.onBeforeLift) {
+          Promise.resolve(_this.props.onBeforeLift()).finally(function () {
+            return _this.setState({
+              bootstrapped: true
+            });
+          });
+        } else {
+          _this.setState({
+            bootstrapped: true
+          });
+        }
+
+        _this._unsubscribe && _this._unsubscribe();
+      }
+    });
+
+    return _this;
+  }
+
+  _createClass(PersistGate, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this._unsubscribe = this.props.persistor.subscribe(this.handlePersistorState);
+      this.handlePersistorState();
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this._unsubscribe && this._unsubscribe();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if ("development" !== 'production') {
+        if (typeof this.props.children === 'function' && this.props.loading) console.error('redux-persist: PersistGate expects either a function child or loading prop, but not both. The loading prop will be ignored.');
+      }
+
+      if (typeof this.props.children === 'function') {
+        return this.props.children(this.state.bootstrapped);
+      }
+
+      return this.state.bootstrapped ? this.props.children : this.props.loading;
+    }
+  }]);
+
+  return PersistGate;
+}(_react.PureComponent);
+
+exports.PersistGate = PersistGate;
+
+_defineProperty(PersistGate, "defaultProps", {
+  children: null,
+  loading: null
+});
+},{"react":"../node_modules/react/index.js"}],"index.less":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -50548,205 +50746,7 @@ module.exports = {
   "xl:z-50": "_xl:z-50_0b298",
   "xl:z-auto": "_xl:z-auto_0b298"
 };
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/redux-persist/es/integration/react.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.PersistGate = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _typeof(obj) {
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof = function _typeof(obj) {
-      return typeof obj;
-    };
-  } else {
-    _typeof = function _typeof(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-  }
-
-  return _typeof(obj);
-}
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-    return call;
-  }
-
-  return _assertThisInitialized(self);
-}
-
-function _getPrototypeOf(o) {
-  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) _setPrototypeOf(subClass, superClass);
-}
-
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-// eslint-disable-line import/no-unresolved
-var PersistGate =
-/*#__PURE__*/
-function (_PureComponent) {
-  _inherits(PersistGate, _PureComponent);
-
-  function PersistGate() {
-    var _getPrototypeOf2;
-
-    var _this;
-
-    _classCallCheck(this, PersistGate);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(PersistGate)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _defineProperty(_assertThisInitialized(_this), "state", {
-      bootstrapped: false
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "_unsubscribe", void 0);
-
-    _defineProperty(_assertThisInitialized(_this), "handlePersistorState", function () {
-      var persistor = _this.props.persistor;
-
-      var _persistor$getState = persistor.getState(),
-          bootstrapped = _persistor$getState.bootstrapped;
-
-      if (bootstrapped) {
-        if (_this.props.onBeforeLift) {
-          Promise.resolve(_this.props.onBeforeLift()).finally(function () {
-            return _this.setState({
-              bootstrapped: true
-            });
-          });
-        } else {
-          _this.setState({
-            bootstrapped: true
-          });
-        }
-
-        _this._unsubscribe && _this._unsubscribe();
-      }
-    });
-
-    return _this;
-  }
-
-  _createClass(PersistGate, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this._unsubscribe = this.props.persistor.subscribe(this.handlePersistorState);
-      this.handlePersistorState();
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this._unsubscribe && this._unsubscribe();
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      if ("development" !== 'production') {
-        if (typeof this.props.children === 'function' && this.props.loading) console.error('redux-persist: PersistGate expects either a function child or loading prop, but not both. The loading prop will be ignored.');
-      }
-
-      if (typeof this.props.children === 'function') {
-        return this.props.children(this.state.bootstrapped);
-      }
-
-      return this.state.bootstrapped ? this.props.children : this.props.loading;
-    }
-  }]);
-
-  return PersistGate;
-}(_react.PureComponent);
-
-exports.PersistGate = PersistGate;
-
-_defineProperty(PersistGate, "defaultProps", {
-  children: null,
-  loading: null
-});
-},{"react":"../node_modules/react/index.js"}],"index.tsx":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.tsx":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -50759,11 +50759,11 @@ var _store = require("./redux/store");
 
 var _reactRedux = require("react-redux");
 
+var _react2 = require("redux-persist/integration/react");
+
 require("./index.less");
 
 require("./tailwind.less");
-
-var _react2 = require("redux-persist/integration/react");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -50773,7 +50773,11 @@ _reactDom.default.render(_react.default.createElement(_reactRedux.Provider, {
   loading: null,
   persistor: _store.persistor
 }, _react.default.createElement(_App.App, null))), document.getElementById("app-root"));
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./App":"App.tsx","./redux/store":"redux/store.ts","react-redux":"../node_modules/react-redux/es/index.js","./index.less":"index.less","./tailwind.less":"tailwind.less","redux-persist/integration/react":"../node_modules/redux-persist/es/integration/react.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/sw.js");
+}
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./App":"App.tsx","./redux/store":"redux/store.ts","react-redux":"../node_modules/react-redux/es/index.js","redux-persist/integration/react":"../node_modules/redux-persist/es/integration/react.js","./index.less":"index.less","./tailwind.less":"tailwind.less","./sw.js":[["sw.js","sw.js"],"sw.js.map","sw.js"]}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -50801,7 +50805,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41963" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37441" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

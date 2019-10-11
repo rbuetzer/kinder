@@ -54,8 +54,14 @@
   font-weight: bold;
 }
 
+html,
+body,
 #app-root {
-  height: 100vh;
+  height: 100%;
+}
+
+#app-root {
+  user-select: none;
 }
 
 .btn {
