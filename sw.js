@@ -26,6 +26,10 @@ self.addEventListener('message', (event) => {
  */
 self.__precacheManifest = [
   {
+    "url": "all.00fee852.css",
+    "revision": "921b3f915f2639a73aaef4670ed1bae2"
+  },
+  {
     "url": "all.a5bf7943.css",
     "revision": "f0695516a1dd10409bd3527f9cf8ab50"
   },
@@ -43,7 +47,7 @@ self.__precacheManifest = [
   },
   {
     "url": "ch-de-2018-f.40c954fa.js",
-    "revision": "8c76c4567cc4b29153d729d5c632a465"
+    "revision": "abd61777ae4bfec08449538c712b1194"
   },
   {
     "url": "ch-de-2018-m.33a34914.js",
@@ -51,7 +55,7 @@ self.__precacheManifest = [
   },
   {
     "url": "ch-de-2018-m.553bede1.js",
-    "revision": "a81e4ed73ebbb0eff7c5874058ebfb9a"
+    "revision": "ea08c1d007dbd8e40ed9cfb09e21ef9e"
   },
   {
     "url": "fa-brands-400.0c371f12.svg",
@@ -207,7 +211,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "05644cd51d721267d483b4e9f5c9901b"
+    "revision": "185608e008d99900e480b9a8bd0cc98c"
   },
   {
     "url": "manifest.webmanifest",
@@ -218,8 +222,12 @@ self.__precacheManifest = [
     "revision": "35080ee0d4dabb0ff014ffa5a34d19f1"
   },
   {
+    "url": "src.c9c69290.js",
+    "revision": "39aeae58b977fd5d8db8e17fbbc7fe6c"
+  },
+  {
     "url": "src.e676cc3c.css",
-    "revision": "ad0bc8126ec00f2270885f9e2ea8d500"
+    "revision": "d1882a94cc15eb6025b2a4ff3ebb32a5"
   },
   {
     "url": "src.f69400ca.css",
