@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "parcel src/index.html",
     "test": "tsc --noEmit && jest",
-    "build": "parcel build src/index.html",
+    "build": "parcel build src/index.html && workbox generateSW workbox-config.js",
     "predeploy": "yarn test && yarn build --public-url /kinder",
     "deploy": "gh-pages -d dist"
   },
@@ -37,6 +37,7 @@
     "react-redux": "^7.1.1",
     "redux": "^4.0.4",
     "redux-persist": "^6.0.0",
-    "redux-saga": "^1.1.1"
+    "redux-saga": "^1.1.1",
+    "workbox-cli": "^4.3.1"
   }
 }
