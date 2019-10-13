@@ -1,4 +1,4 @@
-# Kinder-App
+![Kinder](src/assets/logo.svg)
 
 A webapp to choose a name by swiping left and right.
 
