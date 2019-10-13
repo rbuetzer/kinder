@@ -25,4 +25,4 @@ jobs:
         run: yarn build --public-url /kinder
 
       - name: deploy
-        run: gh-pages -d dist
+        run: yarn gh-pages -d dist
