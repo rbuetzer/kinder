@@ -1,0 +1,28 @@
+on:
+  release:
+    types: [published]
+
+name: Deploy
+
+jobs:
+  run_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: install
+        run: yarn install
+
+      - name: test
+        run: yarn test
+
+      - name: build
+        run: yarn build --public-url /kinder
+
+      - name: deploy
+        run: gh-pages -d dist

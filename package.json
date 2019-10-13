@@ -10,9 +10,7 @@
     "dev": "parcel src/index.html",
     "test": "tsc --noEmit && jest",
     "build": "parcel build src/index.html",
-    "postbuild": "workbox generateSW workbox-config.js",
-    "predeploy": "yarn test && yarn build --public-url /kinder",
-    "deploy": "gh-pages -d dist"
+    "postbuild": "workbox generateSW workbox-config.js"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2",
