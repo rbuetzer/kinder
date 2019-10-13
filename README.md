@@ -1,3 +1,5 @@
+![](https://github.com/rbuetzer/kinder/workflows/Tests/badge.svg)
+
 ![Kinder](src/assets/logo.svg)
 
 A webapp to choose a name by swiping left and right.
