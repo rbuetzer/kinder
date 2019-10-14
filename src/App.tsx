@@ -23,7 +23,7 @@ export const App: React.FunctionComponent = () => {
 
   return (
     <div className={"flex flex-col h-full"}>
-      <div className={"flex-grow overflow-y-scroll overflow-x-hidden"}>
+      <div className={"flex-grow overflow-y-scroll overflow-x-hidden h-full"}>
         {renderSubPage()}
       </div>
       <div className={"flex-shrink-0 h-24 w-full bg-gray-100"}>
