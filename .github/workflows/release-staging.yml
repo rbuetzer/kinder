@@ -1,0 +1,33 @@
+on:
+  push:
+    branches:
+      - master
+
+name: Deploy Staging
+
+jobs:
+  run_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: install
+        run: yarn install
+
+      - name: test
+        run: yarn test
+
+      - name: build
+        run: yarn build --public-url /kinder-staging
+
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v2.5.0
+        env:
+          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_STAGING_DEPLOY_KEY }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: ./dist
