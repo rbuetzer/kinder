@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { sagaActions } from "../redux/sagas";
-import { INameCandidate } from "../models/INameCandidate";
-import { getCurrentName } from "../redux/stackStore";
+import { sagaActions } from "../../redux/sagas";
+import { INameCandidate } from "../../models/INameCandidate";
+import { getCurrentName } from "../../redux/stackStore";
 import { NameCard } from "./NameCard";
 import { useState } from "react";
 

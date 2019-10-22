@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { sagaActions } from "../redux/sagas";
+import { sagaActions } from "../../redux/sagas";
 
 export const FileDialog: React.FunctionComponent = () => {
   const fileUpload = useRef<HTMLInputElement>();
