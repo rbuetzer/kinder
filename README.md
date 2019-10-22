@@ -27,9 +27,3 @@ Run the tests
 ```
 yarn run test
 ```
-
-Deploy to Github Pages
-
-```
-yarn run deploy
-```
