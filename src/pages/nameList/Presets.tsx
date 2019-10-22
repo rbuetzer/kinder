@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { sagaActions } from "../redux/sagas";
-import { appAction } from "../redux/appStore";
-import { SubPage } from "../models/SubPage";
+import { sagaActions } from "../../redux/sagas";
+import { appAction } from "../../redux/appStore";
+import { SubPage } from "../../models/SubPage";
 
 type NameListData = { names: string[] };
 
@@ -17,11 +17,11 @@ export const Presets: React.FunctionComponent = () => {
   const entries: INameListEntry[] = [
     {
       name: "Männliche Vornamen Deutschschweiz, 2018",
-      file: import("../data/ch-de-2018-m")
+      file: import("../../data/ch-de-2018-m")
     },
     {
       name: "Weibliche Vornamen Deutschschweiz, 2018",
-      file: import("../data/ch-de-2018-f")
+      file: import("../../data/ch-de-2018-f")
     }
   ];
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { getRankedNames } from "../redux/nameListStore";
+import { getRankedNames } from "../../redux/nameListStore";
 
 export const Results: React.FunctionComponent = () => {
   const entries = useSelector(getRankedNames);

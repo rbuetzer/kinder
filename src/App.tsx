@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { Voting } from "./voting/Voting";
-import { Results } from "./results/Results";
+import { Voting } from "./pages/voting/Voting";
+import { Results } from "./pages/results/Results";
 import { SubPage } from "./models/SubPage";
 import { getSubPage } from "./redux/appStore";
-import { NameList } from "./nameList/NameList";
+import { NameList } from "./pages/nameList/NameList";
 import { Header } from "./header/Header";
 
 export const App: React.FunctionComponent = () => {
