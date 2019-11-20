@@ -1,5 +1,5 @@
-describe("My First Test", function() {
-  it("Does not do much!", function() {
+describe("Happy Path", function() {
+  it("Vote on some names", function() {
     cy.visit("http://localhost:1234", {
       onBeforeLoad(win) {
         // Make Math.random always return the same value
