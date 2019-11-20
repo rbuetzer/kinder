@@ -102,6 +102,7 @@ export const NameCard: React.FunctionComponent<IProps> = props => {
   return (
     <div className={styles.cardWrapper}>
       <div
+        id={"name-card"}
         className={styles.card}
         onMouseDown={startDragging}
         onTouchStart={startDraggingTouch as any}
