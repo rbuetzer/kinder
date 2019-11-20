@@ -33,5 +33,4 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v1
         with:
-          start: yarn dev
-          wait-on: http://localhost:1234
+          start: "yarn dev & npx wait-on: http://localhost:1234"
