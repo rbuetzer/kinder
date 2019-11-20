@@ -56,7 +56,7 @@ export function* importNamesSaga(
 
 function* nextCardSaga(action: ReturnType<typeof sagaActions.importNames>) {
   const nameIds = yield select(getNameIdsInStack);
-  const pickedCardId = yield call(pickRandomElement(Math.random), nameIds);
+  const pickedCardId = yield call(pickRandomElement(), nameIds);
   yield put(stackStoreActions.pickCard(pickedCardId));
 }
 

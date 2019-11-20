@@ -21,6 +21,7 @@ export const Header: React.FunctionComponent = () => {
         />
         <div className={"flex-grow"} />
         <img
+          id={"menu-button"}
           onClick={toggleIsOpen}
           src={require("../assets/menu.svg")}
           alt={"Menu"}
