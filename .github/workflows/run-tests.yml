@@ -33,7 +33,9 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v1
         with:
-          start: "yarn dev & npx wait-on: http://localhost:1234"
+          start: yarn dev
+          wait-on: http://localhost:1234
+          wait-on-timeout: 30
           record: true
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
