@@ -34,4 +34,3 @@ jobs:
         uses: cypress-io/github-action@v1
         with:
           start: yarn run parcel src/index.html
-          wait-on: http://localhost:1234
