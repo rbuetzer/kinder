@@ -26,7 +26,11 @@ export const App: React.FunctionComponent = () => {
       <div className={"flex-shrink-0 h-26 w-full"}>
         <Header />
       </div>
-      <div className={"flex-grow overflow-y-scroll overflow-x-hidden h-full"}>
+      <div
+        className={
+          "flex-grow overflow-y-auto overflow-x-hidden h-full relative"
+        }
+      >
         {renderSubPage()}
       </div>
     </div>

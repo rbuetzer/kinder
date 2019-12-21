@@ -100,16 +100,14 @@ export const NameCard: React.FunctionComponent<IProps> = props => {
   };
 
   return (
-    <div className={styles.cardWrapper}>
-      <div
-        id={"name-card"}
-        className={styles.card}
-        onMouseDown={startDragging}
-        onTouchStart={startDraggingTouch as any}
-        style={{ left: position, backgroundColor: getBackgroundColor() }}
-      >
-        <div className={`${styles.title} text-5xl`}>{props.name}</div>
-      </div>
+    <div
+      id={"name-card"}
+      className={styles.card}
+      onMouseDown={startDragging}
+      onTouchStart={startDraggingTouch as any}
+      style={{ left: position, backgroundColor: getBackgroundColor() }}
+    >
+      <div className={`${styles.title} text-5xl`}>{props.name}</div>
     </div>
   );
 };
