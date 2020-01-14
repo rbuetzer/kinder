@@ -22,6 +22,14 @@ export const Presets: React.FunctionComponent = () => {
     {
       name: "Weibliche Vornamen Deutschschweiz, 2018",
       file: import("../../data/ch-de-2018-f")
+    },
+    {
+      name: "Männliche Vornamen Romandie, 2018",
+      file: import("../../data/ch-fr-2018-m")
+    },
+    {
+      name: "Weibliche Vornamen Romandie, 2018",
+      file: import("../../data/ch-fr-2018-f")
     }
   ];
 
